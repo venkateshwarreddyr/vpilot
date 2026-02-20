@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>venkat_pilot — AI Browser Copilot</title>
+  <meta name="description" content="AI browser copilot for Chrome. Reads pages, acts across tabs, and completes multi-step tasks autonomously. Powered by Claude, GPT-4, or Grok." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">VP</span>
+      <span class="logo-text">venkat_pilot</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#setup">Setup</a>
+      <a href="https://github.com/venkateshwarreddyr/browser-copilot" target="_blank" rel="noopener" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="badge">Open source · Free to use · Azure serverless</div>
+    <h1>Your AI browser copilot<br><span class="accent">that actually acts.</span></h1>
+    <p class="hero-sub">
+      venkat_pilot reads any web page, synthesises data across all your open tabs,
+      and executes multi-step tasks autonomously — all from a Chrome side panel.
+    </p>
+    <div class="hero-cta">
+      <a href="#setup" class="btn btn-primary">Get started free →</a>
+      <a href="https://github.com/venkateshwarreddyr/browser-copilot" target="_blank" rel="noopener" class="btn btn-ghost">View source ↗</a>
+    </div>
+    <div class="hero-providers">
+      <span>Works with</span>
+      <span class="provider-chip">Anthropic Claude</span>
+      <span class="provider-chip">OpenAI GPT</span>
+      <span class="provider-chip">xAI Grok</span>
+    </div>
+  </div>
+
+  <!-- Decorative browser mockup -->
+  <div class="container mockup-wrap">
+    <div class="browser-mockup">
+      <div class="browser-chrome">
+        <div class="browser-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="browser-address">beaconify.com/activations</div>
+      </div>
+      <div class="browser-body">
+        <div class="page-content">
+          <div class="page-stat">
+            <div class="stat-label">Total Subscribers</div>
+            <div class="stat-value">12,847</div>
+            <div class="stat-delta pos">+7.6% vs Q3</div>
+          </div>
+          <div class="page-stat">
+            <div class="stat-label">Net Revenue Retention</div>
+            <div class="stat-value">112%</div>
+            <div class="stat-delta pos">+3pts vs Q3</div>
+          </div>
+          <div class="page-stat">
+            <div class="stat-label">Avg Churn Rate</div>
+            <div class="stat-value">4.2%</div>
+            <div class="stat-delta neg">+0.8pts vs Q3</div>
+          </div>
+        </div>
+        <div class="side-panel">
+          <div class="panel-header">
+            <span class="panel-logo">VP</span>
+            <span class="panel-title">venkat_pilot</span>
+          </div>
+          <div class="panel-msg assistant">
+            Pulling data from all 4 open tabs and creating your weekly snapshot…
+          </div>
+          <div class="panel-progress">
+            <span class="spinner"></span>
+            <span>Step 3: Reading Patronly revenue data</span>
+          </div>
+          <div class="panel-input">
+            <span>What can I do for you?</span>
+            <div class="act-badge">▶▶ Acting</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ─────────────────────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-label">Features</div>
+    <h2>Everything your browser is missing.</h2>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Smart Page Reader</h3>
+        <p>Extracts structured content — text, headings, tables, forms — from any page, including complex SPAs.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Action Engine</h3>
+        <p>Clicks, types, scrolls, navigates, and fills forms on your behalf. Works on any website without plugins.</p>
+      </div>
+
+      <div class="feature-card feature-card-highlight">
+        <div class="feature-icon">▶▶</div>
+        <h3>Act Without Asking</h3>
+        <p>Toggle autonomous mode to execute 100+ step tasks end-to-end. Resolve all comments in a doc, pull weekly metrics from 4 tabs, update a codebase from a design screenshot.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🗂</div>
+        <h3>Cross-Tab Synthesis</h3>
+        <p>Reads all your open tabs simultaneously and combines their data into a single report, doc, or answer.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📷</div>
+        <h3>Screenshot Vision</h3>
+        <p>Captures the current tab visually and analyses it. Great for UI feedback, debugging, or matching designs.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔀</div>
+        <h3>Multi-LLM</h3>
+        <p>Switch between Anthropic Claude, OpenAI GPT-4, and xAI Grok. Your API key, your data, your control.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ──────────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="how-it-works">
+  <div class="container">
+    <div class="section-label">How it works</div>
+    <h2>Three parts, one seamless experience.</h2>
+    <div class="arch-grid">
+
+      <div class="arch-card">
+        <div class="arch-num">01</div>
+        <h3>Chrome Extension</h3>
+        <p>Side panel UI + service worker that orchestrates the agent loop. Content scripts extract page data and execute DOM actions. Built with React + Vite + TypeScript.</p>
+        <div class="arch-tags">
+          <span>React 18</span><span>MV3</span><span>TypeScript</span>
+        </div>
+      </div>
+
+      <div class="arch-arrow">→</div>
+
+      <div class="arch-card arch-card-center">
+        <div class="arch-num">02</div>
+        <h3>Azure Functions Backend</h3>
+        <p>Stateless Python FastAPI backend hosted on Azure Functions Consumption Plan. Handles one LLM turn per request. The loop lives in your browser — no streaming sockets needed.</p>
+        <div class="arch-tags">
+          <span>Python 3.12</span><span>FastAPI</span><span>Azure Functions</span>
+        </div>
+      </div>
+
+      <div class="arch-arrow">→</div>
+
+      <div class="arch-card">
+        <div class="arch-num">03</div>
+        <h3>LLM + Azure Storage</h3>
+        <p>Conversation memory in Azure Cosmos DB (free tier). Screenshots stored in Azure Blob with 24-hour TTL. Bring your own API key for Anthropic, OpenAI, or xAI.</p>
+        <div class="arch-tags">
+          <span>Cosmos DB</span><span>Blob Storage</span><span>Claude / GPT / Grok</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Setup ─────────────────────────────────────────────────────────────────── -->
+<section class="section" id="setup">
+  <div class="container">
+    <div class="section-label">Setup</div>
+    <h2>Running in under 5 minutes.</h2>
+    <div class="steps-grid">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Clone the repo</h3>
+          <pre><code>git clone https://github.com/venkateshwarreddyr/browser-copilot.git
+cd browser-copilot</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Start the backend</h3>
+          <pre><code>cd backend
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -e ".[test,dev]"
+# Add your API key to local.settings.json
+uvicorn venkat_pilot.app:app --reload --port 7071</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Build the extension</h3>
+          <pre><code>cd extension
+npm install && npm run dev</code></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Load in Chrome</h3>
+          <p>Go to <code>chrome://extensions</code> → Enable Developer mode → Load unpacked → select <code>extension/dist/</code></p>
+          <p>Open the side panel and enter your LLM API key in Settings.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Cost ──────────────────────────────────────────────────────────────────── -->
+<section class="section section-alt">
+  <div class="container cost-section">
+    <div class="section-label">Pricing</div>
+    <h2>Free to run. Really.</h2>
+    <p class="cost-sub">Azure serverless means you only pay when it's used. At moderate usage the total infrastructure cost is under $1/month.</p>
+    <div class="cost-table">
+      <div class="cost-row cost-row-header">
+        <span>Service</span><span>Plan</span><span>Monthly cost</span>
+      </div>
+      <div class="cost-row">
+        <span>Azure Functions</span><span>Consumption</span><span class="free">Free <span class="note">(1M calls/mo)</span></span>
+      </div>
+      <div class="cost-row">
+        <span>Azure Cosmos DB</span><span>Free Tier</span><span class="free">Free <span class="note">(1000 RU/s + 25GB)</span></span>
+      </div>
+      <div class="cost-row">
+        <span>Azure Blob Storage</span><span>LRS Hot</span><span>~$0.02/GB</span>
+      </div>
+      <div class="cost-row">
+        <span>Azure Static Web Apps</span><span>Free Tier</span><span class="free">Free</span>
+      </div>
+      <div class="cost-row cost-row-total">
+        <span>Total</span><span></span><span>&lt; $1/month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="logo">
+      <span class="logo-icon">VP</span>
+      <span class="logo-text">venkat_pilot</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/venkateshwarreddyr/browser-copilot" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/venkateshwarreddyr/browser-copilot/blob/main/README.md" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/venkateshwarreddyr/browser-copilot/issues" target="_blank" rel="noopener">Issues</a>
+    </div>
+    <p class="footer-copy">Open source · MIT License</p>
+  </div>
+</footer>
+
+</body>
+</html>

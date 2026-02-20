@@ -22,6 +22,12 @@ param openaiApiKey string = ''
 @secure()
 param xaiApiKey string = ''
 
+@description('GitHub repository URL for Static Web Apps deployment')
+param repositoryUrl string = 'https://github.com/venkateshwarreddyr/browser-copilot'
+
+@description('Git branch to deploy')
+param branch string = 'main'
+
 var prefix = 'venkatpilot${env}'
 
 // ── Storage (required for Functions + screenshots) ────────────────────────────
@@ -59,5 +65,19 @@ module functions 'modules/functions.bicep' = {
   }
 }
 
+// ── Azure Static Web Apps ─────────────────────────────────────────────────────
+module swa 'modules/staticwebapp.bicep' = {
+  name: 'staticwebapp'
+  params: {
+    name: '${prefix}-web'
+    location: location
+    repositoryUrl: repositoryUrl
+    branch: branch
+  }
+}
+
 output functionAppUrl string = functions.outputs.url
 output functionAppName string = functions.outputs.name
+output webAppUrl string = 'https://${swa.outputs.defaultHostname}'
+output webAppName string = swa.outputs.name
+output swaDeploymentToken string = swa.outputs.deploymentToken
