@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+  pre, code { font-family: ui-monospace, monospace; }
+}
+
+/* Markdown rendered inside chat bubbles */
+.prose-chat p { margin: 0 0 0.5rem; }
+.prose-chat p:last-child { margin-bottom: 0; }
+.prose-chat ul, .prose-chat ol { padding-left: 1.25rem; margin: 0.25rem 0; }
+.prose-chat code {
+  background: rgba(0,0,0,0.07);
+  border-radius: 3px;
+  padding: 0 3px;
+  font-size: 0.85em;
+}
+.prose-chat pre code { background: transparent; padding: 0; }
+.prose-chat pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
