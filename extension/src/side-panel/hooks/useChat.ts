@@ -27,6 +27,7 @@ export function useChat() {
   const [settings, setSettings] = useState<UserSettings | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const [progress, setProgress] = useState<string | null>(null);
+  const [stepCount, setStepCount] = useState(0);
   const [pendingApproval, setPendingApproval] = useState<PendingApproval | null>(null);
   const historyRef = useRef<Message[]>([]);
   const portRef = useRef<chrome.runtime.Port | null>(null);
@@ -54,7 +55,8 @@ export function useChat() {
         setProgress(null);
       }
       if (msg.type === "ACTION_PROGRESS") {
-        setProgress(`Step ${msg.step}: ${msg.description}`);
+        setStepCount(msg.step);
+        setProgress(msg.description);
       }
       if (msg.type === "ACTION_APPROVAL_REQUEST") {
         setPendingApproval({ toolCall: msg.toolCall, step: msg.step });
@@ -78,6 +80,7 @@ export function useChat() {
       appendMessage("user", text);
       historyRef.current.push({ role: "user", content: text });
       setIsRunning(true);
+      setStepCount(0);
       setProgress("Reading page...");
 
       // Get page content and all tabs from service worker
@@ -124,6 +127,7 @@ export function useChat() {
     settings,
     isRunning,
     progress,
+    stepCount,
     pendingApproval,
     sendMessage,
     approveAction,

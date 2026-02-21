@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { saveSettings } from "../../lib/storage";
-import { LLMProvider, MODEL_OPTIONS, UserSettings } from "../../lib/types";
+import { LLMProvider, MODEL_LABELS, MODEL_OPTIONS, UserSettings } from "../../lib/types";
 
 interface Props {
   settings: UserSettings;
@@ -72,7 +72,7 @@ export function SettingsPanel({ settings, onClose, onSaved }: Props) {
             className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
           >
             {MODEL_OPTIONS[local.provider].map((m) => (
-              <option key={m} value={m}>{m}</option>
+              <option key={m} value={m}>{MODEL_LABELS[m] ?? m}</option>
             ))}
           </select>
         </div>

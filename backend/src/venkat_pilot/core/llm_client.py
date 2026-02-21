@@ -151,7 +151,7 @@ class LLMClient:
 
         response = await self._anthropic.messages.create(
             model=self.model,
-            max_tokens=4096,
+            max_tokens=16384,
             system=SYSTEM_PROMPT,
             messages=converted,
             tools=tools_anthropic,  # type: ignore[arg-type]
@@ -208,7 +208,7 @@ class LLMClient:
             messages=[system_msg, *converted],  # type: ignore[arg-type]
             tools=tools_openai,  # type: ignore[arg-type]
             tool_choice="auto",
-            max_tokens=4096,
+            max_tokens=16384,
         )
 
         choice = response.choices[0]

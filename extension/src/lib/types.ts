@@ -167,6 +167,34 @@ export const DEFAULT_SETTINGS: UserSettings = {
 
 export const MODEL_OPTIONS: Record<LLMProvider, string[]> = {
   anthropic: ["claude-sonnet-4-6", "claude-opus-4-6", "claude-haiku-4-5-20251001"],
-  openai: ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo"],
-  xai: ["grok-2-1212", "grok-2-vision-1212", "grok-beta"],
+  openai: ["gpt-5.2", "gpt-5-mini", "gpt-5.2-codex", "o4-mini"],
+  xai: ["grok-4-1-fast-non-reasoning", "grok-4-1-fast-reasoning", "grok-3", "grok-3-mini"],
+};
+
+export const MODEL_LABELS: Record<string, string> = {
+  "claude-sonnet-4-6": "Claude Sonnet 4.6 (balanced)",
+  "claude-opus-4-6": "Claude Opus 4.6 (most capable)",
+  "claude-haiku-4-5-20251001": "Claude Haiku 4.5 (fastest)",
+  "gpt-5.2": "GPT-5.2 (flagship)",
+  "gpt-5-mini": "GPT-5 Mini (fast & cheap)",
+  "gpt-5.2-codex": "GPT-5.2 Codex (coding)",
+  "o4-mini": "o4-mini (reasoning)",
+  "grok-4-1-fast-non-reasoning": "Grok 4.1 Fast (2M ctx)",
+  "grok-4-1-fast-reasoning": "Grok 4.1 Fast Reasoning (2M ctx)",
+  "grok-3": "Grok 3 (general)",
+  "grok-3-mini": "Grok 3 Mini (budget)",
+};
+
+export const MODEL_SHORT_NAMES: Record<string, string> = {
+  "claude-sonnet-4-6": "Sonnet 4.6",
+  "claude-opus-4-6": "Opus 4.6",
+  "claude-haiku-4-5-20251001": "Haiku 4.5",
+  "gpt-5.2": "GPT-5.2",
+  "gpt-5-mini": "GPT-5 Mini",
+  "gpt-5.2-codex": "GPT-5.2 Codex",
+  "o4-mini": "o4-mini",
+  "grok-4-1-fast-non-reasoning": "Grok 4.1",
+  "grok-4-1-fast-reasoning": "Grok 4.1 R",
+  "grok-3": "Grok 3",
+  "grok-3-mini": "Grok 3 Mini",
 };

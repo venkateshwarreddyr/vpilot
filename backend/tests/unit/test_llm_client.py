@@ -14,12 +14,12 @@ def anthropic_client() -> LLMClient:
 
 @pytest.fixture
 def openai_client() -> LLMClient:
-    return LLMClient(provider="openai", api_key="sk-test", model="gpt-4o-mini")
+    return LLMClient(provider="openai", api_key="sk-test", model="gpt-5-mini")
 
 
 @pytest.fixture
 def xai_client() -> LLMClient:
-    return LLMClient(provider="xai", api_key="xai-test", model="grok-2-1212")
+    return LLMClient(provider="xai", api_key="xai-test", model="grok-4-1-fast-non-reasoning")
 
 
 class TestAnthropicClient:

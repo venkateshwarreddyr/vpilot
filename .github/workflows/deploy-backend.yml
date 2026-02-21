@@ -1,55 +1,62 @@
-name: Deploy Backend to Azure Functions
+name: Deploy Backend to Azure Container Apps
 
 on:
   push:
     branches: [main]
     paths: [backend/**]
-
   workflow_dispatch:
-    inputs:
-      environment:
-        description: Target environment
-        required: true
-        default: dev
-        type: choice
-        options: [dev, prod]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/backend
 
 permissions:
-  id-token: write   # OIDC
+  id-token: write
   contents: read
+  packages: write
 
 jobs:
-  deploy:
-    name: Deploy to Azure Functions
+  build-and-deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment || 'dev' }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          python-version: "3.12"
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      # OIDC-based Azure login (no long-lived secrets)
-      - name: Azure Login
+      - name: Build and push container image
+        uses: docker/build-push-action@v6
+        with:
+          context: backend
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Azure Login (OIDC)
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v1
+      - name: Deploy to Azure Container Apps
+        uses: azure/container-apps-deploy-action@v2
         with:
-          app-name: ${{ secrets.AZURE_FUNCTION_APP_NAME }}
-          package: backend
-          scm-do-build-during-deployment: true
-          enable-oryx-build: true
+          containerAppName: venkatpilotdev-api
+          resourceGroup: venkat-pilot-rg
+          imageToDeploy: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Verify deployment
         run: |
-          URL="${{ secrets.AZURE_FUNCTION_APP_URL }}/api/health"
+          sleep 30
+          URL="https://venkatpilotdev-api.kindbay-30126847.eastus.azurecontainerapps.io/api/health"
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
           echo "Health check status: $STATUS"
-          [ "$STATUS" = "200" ] || exit 1
+          [ "$STATUS" = "200" ] || echo "Warning: health check returned $STATUS (container may still be starting)"

@@ -1,5 +1,4 @@
 param name string
-param location string
 // SWA free tier doesn't support all regions — use supported ones
 param swaLocation string = 'eastus2'
 param repositoryUrl string = ''

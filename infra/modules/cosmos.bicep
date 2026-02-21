@@ -1,5 +1,6 @@
 param name string
-param location string
+// Cosmos DB free tier capacity varies by region — westus2 has reliable availability
+param location string = 'westus2'
 
 resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2024-05-15' = {
   name: name

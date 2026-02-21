@@ -30,7 +30,7 @@ param branch string = 'main'
 
 var prefix = 'venkatpilot${env}'
 
-// ── Storage (required for Functions + screenshots) ────────────────────────────
+// ── Storage (required for screenshots + blob) ────────────────────────────────
 module storage 'modules/storage.bicep' = {
   name: 'storage'
   params: {
@@ -43,16 +43,15 @@ module storage 'modules/storage.bicep' = {
 module cosmos 'modules/cosmos.bicep' = {
   name: 'cosmos'
   params: {
-    name: '${prefix}-cosmos'
-    location: location
+    name: '${prefix}-cosmos2'
   }
 }
 
-// ── Azure Functions ───────────────────────────────────────────────────────────
-module functions 'modules/functions.bicep' = {
-  name: 'functions'
+// ── Backend (Azure Container Apps) ────────────────────────────────────────────
+module backend 'modules/functions.bicep' = {
+  name: 'backend'
   params: {
-    name: '${prefix}-func'
+    name: '${prefix}-api'
     location: location
     storageConnectionString: storage.outputs.connectionString
     cosmosEndpoint: cosmos.outputs.endpoint
@@ -70,14 +69,14 @@ module swa 'modules/staticwebapp.bicep' = {
   name: 'staticwebapp'
   params: {
     name: '${prefix}-web'
-    location: location
     repositoryUrl: repositoryUrl
     branch: branch
   }
 }
 
-output functionAppUrl string = functions.outputs.url
-output functionAppName string = functions.outputs.name
+output backendUrl string = backend.outputs.url
+output backendName string = backend.outputs.name
+output backendEnvName string = backend.outputs.envName
 output webAppUrl string = 'https://${swa.outputs.defaultHostname}'
 output webAppName string = swa.outputs.name
 output swaDeploymentToken string = swa.outputs.deploymentToken
