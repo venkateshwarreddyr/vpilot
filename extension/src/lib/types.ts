@@ -160,7 +160,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
   provider: "anthropic",
   model: "claude-sonnet-4-6",
   api_key: "",
-  backend_url: "http://localhost:7071",
+  backend_url: "https://venkatpilotdev-api.kindbay-30126847.eastus.azurecontainerapps.io",
   act_without_asking: false,
   backend_api_key: "dev-key",
 };
