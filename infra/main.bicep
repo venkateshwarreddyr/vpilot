@@ -6,9 +6,9 @@ param env string = 'dev'
 @description('Azure region')
 param location string = resourceGroup().location
 
-@description('venkat_pilot backend API key')
+@description('vpilot backend API key')
 @secure()
-param venkatPilotApiKey string
+param vpilotApiKey string
 
 @description('Anthropic API key (optional)')
 @secure()
@@ -23,12 +23,12 @@ param openaiApiKey string = ''
 param xaiApiKey string = ''
 
 @description('GitHub repository URL for Static Web Apps deployment')
-param repositoryUrl string = 'https://github.com/venkateshwarreddyr/browser-copilot'
+param repositoryUrl string = 'https://github.com/venkateshwarreddyr/vpilot'
 
 @description('Git branch to deploy')
 param branch string = 'main'
 
-var prefix = 'venkatpilot${env}'
+var prefix = 'vpilot${env}'
 
 // ── Storage (required for screenshots + blob) ────────────────────────────────
 module storage 'modules/storage.bicep' = {
@@ -57,7 +57,7 @@ module backend 'modules/functions.bicep' = {
     cosmosEndpoint: cosmos.outputs.endpoint
     cosmosKey: cosmos.outputs.primaryKey
     blobConnectionString: storage.outputs.connectionString
-    venkatPilotApiKey: venkatPilotApiKey
+    vpilotApiKey: vpilotApiKey
     anthropicApiKey: anthropicApiKey
     openaiApiKey: openaiApiKey
     xaiApiKey: xaiApiKey

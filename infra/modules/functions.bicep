@@ -5,7 +5,7 @@ param cosmosEndpoint string
 param cosmosKey string
 param blobConnectionString string
 @secure()
-param venkatPilotApiKey string
+param vpilotApiKey string
 @secure()
 param anthropicApiKey string
 @secure()
@@ -57,7 +57,7 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
         }
       }
       secrets: [
-        { name: 'venkat-pilot-api-key', value: venkatPilotApiKey }
+        { name: 'vpilot-api-key', value: vpilotApiKey }
         { name: 'anthropic-api-key', value: empty(anthropicApiKey) ? 'not-set' : anthropicApiKey }
         { name: 'openai-api-key', value: empty(openaiApiKey) ? 'not-set' : openaiApiKey }
         { name: 'xai-api-key', value: empty(xaiApiKey) ? 'not-set' : xaiApiKey }
@@ -80,7 +80,7 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
             { name: 'COSMOS_ENDPOINT', value: cosmosEndpoint }
             { name: 'COSMOS_KEY', secretRef: 'cosmos-key' }
             { name: 'BLOB_CONNECTION_STRING', secretRef: 'blob-conn' }
-            { name: 'VENKAT_PILOT_API_KEY', secretRef: 'venkat-pilot-api-key' }
+            { name: 'VPILOT_API_KEY', secretRef: 'vpilot-api-key' }
             { name: 'ANTHROPIC_API_KEY', secretRef: 'anthropic-api-key' }
             { name: 'OPENAI_API_KEY', secretRef: 'openai-api-key' }
             { name: 'XAI_API_KEY', secretRef: 'xai-api-key' }

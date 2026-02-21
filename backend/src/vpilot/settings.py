@@ -12,14 +12,14 @@ class Settings(BaseSettings):
     # Azure Cosmos DB
     cosmos_endpoint: str = ""
     cosmos_key: str = ""
-    cosmos_database: str = "venkat_pilot"
+    cosmos_database: str = "vpilot"
 
     # Azure Blob Storage
     blob_connection_string: str = "UseDevelopmentStorage=true"
     blob_container: str = "screenshots"
 
     # Auth
-    venkat_pilot_api_key: str = "dev-key"
+    vpilot_api_key: str = "dev-key"
     allowed_origins: str = "http://localhost:5173,chrome-extension://*"
 
     @property

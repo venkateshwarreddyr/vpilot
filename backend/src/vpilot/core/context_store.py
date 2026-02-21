@@ -13,7 +13,7 @@ import structlog
 from azure.cosmos.aio import CosmosClient
 from azure.cosmos.exceptions import CosmosHttpResponseError
 
-from venkat_pilot.settings import get_settings
+from vpilot.settings import get_settings
 
 log = structlog.get_logger()
 

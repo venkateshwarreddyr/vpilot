@@ -2,8 +2,8 @@
 
 import pytest
 
-from venkat_pilot.core.context_store import load_conversation, load_user_prefs, save_conversation, save_user_prefs
-from venkat_pilot.core.blob_store import upload_screenshot
+from vpilot.core.context_store import load_conversation, load_user_prefs, save_conversation, save_user_prefs
+from vpilot.core.blob_store import upload_screenshot
 
 
 class TestContextStoreFallback:

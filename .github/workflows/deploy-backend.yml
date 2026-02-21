@@ -49,14 +49,14 @@ jobs:
       - name: Deploy to Azure Container Apps
         uses: azure/container-apps-deploy-action@v2
         with:
-          containerAppName: venkatpilotdev-api
-          resourceGroup: venkat-pilot-rg
+          containerAppName: vpilotdev-api
+          resourceGroup: vpilot-rg
           imageToDeploy: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Verify deployment
         run: |
           sleep 30
-          URL="https://venkatpilotdev-api.kindbay-30126847.eastus.azurecontainerapps.io/api/health"
+          URL="https://vpilotdev-api.kindbay-30126847.eastus.azurecontainerapps.io/api/health"
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
           echo "Health check status: $STATUS"
           [ "$STATUS" = "200" ] || echo "Warning: health check returned $STATUS (container may still be starting)"

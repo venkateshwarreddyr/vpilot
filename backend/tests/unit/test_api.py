@@ -5,8 +5,8 @@ from unittest.mock import AsyncMock, patch
 import pytest
 from httpx import ASGITransport, AsyncClient
 
-from venkat_pilot.app import app
-from venkat_pilot.core.llm_client import LLMResponse, ToolCall
+from vpilot.app import app
+from vpilot.core.llm_client import LLMResponse, ToolCall
 
 
 @pytest.fixture
@@ -47,7 +47,7 @@ async def test_chat_returns_text(client: AsyncClient) -> None:
     mock_response = LLMResponse(type="text", content="This page says Hello world.")
 
     with patch(
-        "venkat_pilot.api.chat.LLMClient.chat",
+        "vpilot.api.chat.LLMClient.chat",
         new_callable=AsyncMock,
         return_value=mock_response,
     ):
@@ -67,7 +67,7 @@ async def test_chat_returns_tool_calls(client: AsyncClient) -> None:
     )
 
     with patch(
-        "venkat_pilot.api.chat.LLMClient.chat",
+        "vpilot.api.chat.LLMClient.chat",
         new_callable=AsyncMock,
         return_value=mock_response,
     ):
@@ -94,7 +94,7 @@ async def test_synthesize(client: AsyncClient) -> None:
     mock_response = LLMResponse(type="text", content="Combined summary of all tabs.")
 
     with patch(
-        "venkat_pilot.api.synthesize.LLMClient.chat",
+        "vpilot.api.synthesize.LLMClient.chat",
         new_callable=AsyncMock,
         return_value=mock_response,
     ):

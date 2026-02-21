@@ -1,15 +1,15 @@
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
-from venkat_pilot.api.chat import router as chat_router
-from venkat_pilot.api.screenshot import router as screenshot_router
-from venkat_pilot.api.synthesize import router as synthesize_router
-from venkat_pilot.settings import get_settings
+from vpilot.api.chat import router as chat_router
+from vpilot.api.screenshot import router as screenshot_router
+from vpilot.api.synthesize import router as synthesize_router
+from vpilot.settings import get_settings
 
 settings = get_settings()
 
 app = FastAPI(
-    title="venkat_pilot API",
+    title="vpilot API",
     version="1.0.0",
     docs_url="/api/docs",
     redoc_url=None,
@@ -39,7 +39,7 @@ async def verify_api_key(request: Request, call_next: object) -> Response:
         return Response(content="Unauthorized", status_code=401)
 
     token = auth.removeprefix("Bearer ").strip()
-    if token != settings.venkat_pilot_api_key:
+    if token != settings.vpilot_api_key:
         return Response(content="Forbidden", status_code=403)
 
     return await call_next(request)  # type: ignore[operator]
@@ -54,4 +54,4 @@ app.include_router(screenshot_router, prefix="/api")
 
 @app.get("/api/health")
 async def health() -> dict[str, str]:
-    return {"status": "ok", "service": "venkat_pilot"}
+    return {"status": "ok", "service": "vpilot"}

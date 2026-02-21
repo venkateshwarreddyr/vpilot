@@ -34,8 +34,8 @@ function postToPanel(msg: ExtMessage) {
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    id: "open-venkat-pilot",
-    title: "Ask venkat_pilot",
+    id: "open-vpilot",
+    title: "Ask vpilot",
     contexts: ["selection", "page"],
   });
   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });

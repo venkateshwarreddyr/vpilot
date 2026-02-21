@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from venkat_pilot.models.action import (
+from vpilot.models.action import (
     ClickAction,
     ExtractAction,
     NavigateAction,
@@ -12,7 +12,7 @@ from venkat_pilot.models.action import (
     TypeAction,
     WaitAction,
 )
-from venkat_pilot.models.message import FormField, PageContent, TabInfo, TextMessage, ToolResultMessage
+from vpilot.models.message import FormField, PageContent, TabInfo, TextMessage, ToolResultMessage
 
 
 class TestActionModels:

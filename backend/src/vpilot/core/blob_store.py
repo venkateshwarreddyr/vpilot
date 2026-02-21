@@ -14,7 +14,7 @@ import structlog
 from azure.storage.blob import BlobSasPermissions, generate_blob_sas
 from azure.storage.blob.aio import BlobServiceClient
 
-from venkat_pilot.settings import get_settings
+from vpilot.settings import get_settings
 
 log = structlog.get_logger()
 

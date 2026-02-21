@@ -3,15 +3,15 @@ from typing import Any, Literal
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from venkat_pilot.core.llm_client import LLMClient, LLMProvider, LLMResponse
-from venkat_pilot.models.message import PageContent, TabInfo
+from vpilot.core.llm_client import LLMClient, LLMProvider, LLMResponse
+from vpilot.models.message import PageContent, TabInfo
 
 router = APIRouter()
 
 
 class ChatRequest(BaseModel):
     messages: list[dict[str, Any]]
-    page_content: PageContent
+    page_content: PageContent | None = None
     all_tabs: list[TabInfo] = []
     act_without_asking: bool = False
     provider: LLMProvider = "anthropic"
@@ -61,18 +61,20 @@ async def chat(req: ChatRequest) -> TextResponse | ToolCallsResponse:
 
 def _inject_page_context(
     messages: list[dict[str, Any]],
-    page: PageContent,
+    page: PageContent | None,
     tabs: list[TabInfo],
 ) -> list[dict[str, Any]]:
     """Prepend a system-style context block to the first user message."""
     if not messages:
         return messages
 
-    context_lines = [
-        f"**Current page:** {page.title} ({page.url})",
-        f"**Open tabs:** {len(tabs)} tab(s) — " + ", ".join(t.title for t in tabs[:5]),
-    ]
-    if page.text:
+    context_lines: list[str] = []
+    if page:
+        context_lines.append(f"**Current page:** {page.title} ({page.url})")
+    context_lines.append(
+        f"**Open tabs:** {len(tabs)} tab(s) — " + ", ".join(t.title for t in tabs[:5])
+    )
+    if page and page.text:
         context_lines.append(f"\n**Page text (truncated):**\n{page.text[:3000]}")
 
     context_block = "\n".join(context_lines)

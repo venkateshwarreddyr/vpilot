@@ -18,9 +18,9 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2024-05-15' = {
 
 resource database 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2024-05-15' = {
   parent: cosmosAccount
-  name: 'venkat_pilot'
+  name: 'vpilot'
   properties: {
-    resource: { id: 'venkat_pilot' }
+    resource: { id: 'vpilot' }
   }
 }
 

@@ -80,7 +80,7 @@ TOOLS: list[dict[str, Any]] = [
     },
 ]
 
-SYSTEM_PROMPT = """You are venkat_pilot, an AI browser copilot embedded in Chrome.
+SYSTEM_PROMPT = """You are vpilot, an AI browser copilot embedded in Chrome.
 You can read web pages, act on them, and synthesize information across tabs.
 
 Guidelines:

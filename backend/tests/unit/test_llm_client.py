@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from venkat_pilot.core.llm_client import LLMClient, LLMResponse
+from vpilot.core.llm_client import LLMClient, LLMResponse
 
 
 @pytest.fixture
@@ -100,8 +100,8 @@ class TestXAIClient:
 class TestMessageInjection:
     async def test_page_context_injected(self, anthropic_client: LLMClient) -> None:
         """Context injection happens in api/chat.py, not the client."""
-        from venkat_pilot.api.chat import _inject_page_context
-        from venkat_pilot.models.message import PageContent
+        from vpilot.api.chat import _inject_page_context
+        from vpilot.models.message import PageContent
 
         page = PageContent(url="https://example.com", title="Example", text="hello world")
         messages = [{"role": "user", "content": "What is this page about?"}]

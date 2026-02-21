@@ -87,7 +87,7 @@ export default function App() {
           <div className="w-7 h-7 rounded-lg bg-brand-500 flex items-center justify-center">
             <span className="text-white text-xs font-bold">VP</span>
           </div>
-          <span className="font-semibold text-stone-800 text-sm">venkat_pilot</span>
+          <span className="font-semibold text-stone-800 text-sm">vpilot</span>
           <div className="relative">
             <button
               onClick={() => setShowModelPicker((v) => !v)}
@@ -150,7 +150,7 @@ export default function App() {
             <div className="w-12 h-12 rounded-2xl bg-brand-500 flex items-center justify-center mb-4 shadow-md">
               <span className="text-white text-xl font-bold">VP</span>
             </div>
-            <h3 className="font-semibold text-stone-700 mb-1">venkat_pilot</h3>
+            <h3 className="font-semibold text-stone-700 mb-1">vpilot</h3>
             <p className="text-sm text-stone-400 leading-relaxed">
               Your AI browser copilot. I can read pages, act across tabs, edit
               documents, and complete multi-step tasks autonomously.

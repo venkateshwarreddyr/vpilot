@@ -3,8 +3,8 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from venkat_pilot.core.llm_client import LLMClient, LLMProvider
-from venkat_pilot.models.message import PageContent
+from vpilot.core.llm_client import LLMClient, LLMProvider
+from vpilot.models.message import PageContent
 
 router = APIRouter()
 

@@ -1,4 +1,4 @@
-# venkat_pilot 🤖
+# vpilot 🤖
 
 AI browser copilot Chrome extension — reads pages, acts across tabs, and completes multi-step tasks autonomously. Inspired by Claude for Chrome.
 
@@ -9,7 +9,7 @@ AI browser copilot Chrome extension — reads pages, acts across tabs, and compl
 ## Project Structure
 
 ```
-browser-copilot/
+vpilot/
 ├── extension/          Chrome MV3 extension (React + Vite + TypeScript)
 ├── backend/            Python FastAPI backend (Azure Functions serverless)
 ├── infra/              Azure Bicep infrastructure-as-code
@@ -33,14 +33,14 @@ pip install -e ".[test,dev]"
 
 # Configure secrets (edit local.settings.json)
 # Set ANTHROPIC_API_KEY / OPENAI_API_KEY / XAI_API_KEY as needed
-# VENKAT_PILOT_API_KEY defaults to "dev-key"
+# VPILOT_API_KEY defaults to "dev-key"
 
 # Run with Azure Functions Core Tools
 func start
 # → API running at http://localhost:7071/api/
 
 # OR run with uvicorn (simpler for dev)
-uvicorn venkat_pilot.app:app --reload --port 7071
+uvicorn vpilot.app:app --reload --port 7071
 ```
 
 ### 2. Extension
@@ -56,7 +56,7 @@ Load in Chrome:
 1. Go to `chrome://extensions`
 2. Enable **Developer mode** (top right)
 3. Click **Load unpacked** → select `extension/dist/`
-4. Click the venkat_pilot icon → **Open Side Panel**
+4. Click the vpilot icon → **Open Side Panel**
 5. Enter your API key in Settings
 
 ### 3. Configure Extension Settings
@@ -123,14 +123,14 @@ The **agent loop runs in the service worker** (client-side). The backend is stat
 az login
 
 # Create resource group
-az group create --name venkat-pilot-rg --location eastus
+az group create --name vpilot-rg --location eastus
 
 # Deploy Bicep
 az deployment group create \
-  --resource-group venkat-pilot-rg \
+  --resource-group vpilot-rg \
   --template-file infra/main.bicep \
   --parameters infra/parameters/dev.bicepparam \
-  --parameters venkatPilotApiKey=<your-secret-key> \
+  --parameters vpilotApiKey=<your-secret-key> \
   --parameters anthropicApiKey=<your-anthropic-key>
 ```
 

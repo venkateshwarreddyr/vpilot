@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from httpx import ASGITransport, AsyncClient
 
-from venkat_pilot.app import app
+from vpilot.app import app
 
 HEADERS = {"Authorization": "Bearer dev-key"}
 
@@ -34,11 +34,11 @@ async def test_screenshot_anthropic(client: AsyncClient) -> None:
     mock_response = MagicMock()
     mock_response.content = [mock_block]
 
-    with patch("venkat_pilot.api.screenshot.anthropic.AsyncAnthropic") as MockAnth:
+    with patch("vpilot.api.screenshot.anthropic.AsyncAnthropic") as MockAnth:
         instance = MockAnth.return_value
         instance.messages = MagicMock()
         instance.messages.create = AsyncMock(return_value=mock_response)
-        with patch("venkat_pilot.api.screenshot.upload_screenshot", new_callable=AsyncMock, return_value=None):
+        with patch("vpilot.api.screenshot.upload_screenshot", new_callable=AsyncMock, return_value=None):
             resp = await client.post("/api/screenshot", json=PAYLOAD, headers=HEADERS)
 
     assert resp.status_code == 200
@@ -55,12 +55,12 @@ async def test_screenshot_openai(client: AsyncClient) -> None:
 
     payload = {**PAYLOAD, "provider": "openai", "model": "gpt-4o", "api_key": "sk-fake"}
 
-    with patch("venkat_pilot.api.screenshot.AsyncOpenAI") as MockOAI:
+    with patch("vpilot.api.screenshot.AsyncOpenAI") as MockOAI:
         instance = MockOAI.return_value
         instance.chat = MagicMock()
         instance.chat.completions = MagicMock()
         instance.chat.completions.create = AsyncMock(return_value=mock_response)
-        with patch("venkat_pilot.api.screenshot.upload_screenshot", new_callable=AsyncMock, return_value=None):
+        with patch("vpilot.api.screenshot.upload_screenshot", new_callable=AsyncMock, return_value=None):
             resp = await client.post("/api/screenshot", json=payload, headers=HEADERS)
 
     assert resp.status_code == 200
@@ -77,12 +77,12 @@ async def test_screenshot_xai(client: AsyncClient) -> None:
 
     payload = {**PAYLOAD, "provider": "xai", "model": "grok-2-vision-1212", "api_key": "xai-fake"}
 
-    with patch("venkat_pilot.api.screenshot.AsyncOpenAI") as MockOAI:
+    with patch("vpilot.api.screenshot.AsyncOpenAI") as MockOAI:
         instance = MockOAI.return_value
         instance.chat = MagicMock()
         instance.chat.completions = MagicMock()
         instance.chat.completions.create = AsyncMock(return_value=mock_response)
-        with patch("venkat_pilot.api.screenshot.upload_screenshot", new_callable=AsyncMock, return_value=None):
+        with patch("vpilot.api.screenshot.upload_screenshot", new_callable=AsyncMock, return_value=None):
             resp = await client.post("/api/screenshot", json=payload, headers=HEADERS)
 
     assert resp.status_code == 200

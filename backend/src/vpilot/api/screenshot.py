@@ -6,8 +6,8 @@ from fastapi import APIRouter, HTTPException
 from openai import AsyncOpenAI
 from pydantic import BaseModel
 
-from venkat_pilot.core.blob_store import upload_screenshot
-from venkat_pilot.core.llm_client import LLMProvider
+from vpilot.core.blob_store import upload_screenshot
+from vpilot.core.llm_client import LLMProvider
 
 router = APIRouter()
 

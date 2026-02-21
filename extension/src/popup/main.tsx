@@ -17,7 +17,7 @@ function Popup() {
           <span className="text-white text-sm font-bold">VP</span>
         </div>
         <div>
-          <p className="font-semibold text-stone-800 text-sm leading-none">venkat_pilot</p>
+          <p className="font-semibold text-stone-800 text-sm leading-none">vpilot</p>
           <p className="text-xs text-stone-400 mt-0.5">AI browser copilot</p>
         </div>
       </div>
